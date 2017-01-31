@@ -11,10 +11,20 @@ class SendWelcomeEmailController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+
+    public $email;
+
+    public function __construct(SendWelcomeEmail $email)
     {
-        $data = [];
-        return view('sendWelcomeEmail',$data);
+        parent::__construct();
+        $this->email = $email;
+    }
+
+
+    public function handler()
+    {
+        $this->email->send();
+
     }
 
 }
